@@ -18,9 +18,16 @@ AppScreenManager:
                 pos: self.pos
         cols: 1
         padding: -2
-        Label:
-            text: app.android_build_wrapper.model
-            color: Utils.get_color_from_hex('#00000057')
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'center'
+            size_hint: 1, None
+            height: '50dp'
+            Label:
+                size_hint: 1, None
+                height: '50dp'
+                text: 'text'
+                color: Utils.get_color_from_hex('#00000057')
         AnchorLayout:
             anchor_x: 'center'
             anchor_y: 'bottom'
