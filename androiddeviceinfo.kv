@@ -1,0 +1,22 @@
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+#: import Utils kivy.utils
+
+AppScreenManager:
+
+<AppScreenManager>:
+    transition: SwapTransition()
+    MainScreen:
+
+<MainScreen>:
+    name: 'MainScreen'
+    GridLayout:
+        canvas.before:
+            Color:
+                rgb: Utils.get_color_from_hex('#E0E0E0')
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        cols: 1
+        Label:
+            text: app.android_build_wrapper.model
+            color: Utils.get_color_from_hex('#00000057')
