@@ -1,5 +1,6 @@
 #: import SwapTransition kivy.uix.screenmanager.SwapTransition
 #: import Utils kivy.utils
+#: import ScrollEffect kivy.effects.scroll.ScrollEffect
 
 AppScreenManager:
 
@@ -8,31 +9,228 @@ AppScreenManager:
     MainScreen:
 
 <MainScreen>:
+
     name: 'MainScreen'
+
     GridLayout:
+
         canvas.before:
             Color:
                 rgb: Utils.get_color_from_hex('#E0E0E0')
             Rectangle:
                 size: self.size
                 pos: self.pos
+
         cols: 1
-        padding: -2
-        AnchorLayout:
-            anchor_x: 'center'
-            anchor_y: 'center'
+        padding: -2, 0, -2, -2
+
+        GridLayout:
+
+            id: topbar
+
+            canvas.before:
+                Color:
+                    rgb: Utils.get_color_from_hex('#3F51B5')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            rows: 1
+            size_hint: 1, None
+            height: '56dp'
+
+
+
+        ScrollView:
+
+            do_scroll_x: False
+            effect_cls: ScrollEffect
+
+            GridLayout:
+
+                size_hint: 1, None
+                height: self.minimum_height
+                cols: 1
+                spacing: '5dp'
+                padding: '10dp'
+
+                CategoryLabel:
+                    text: 'GENERAL'
+
+                InfoLabel:
+                    info_label: 'Device model'
+                    info_text: app.android_build_wrapper.model
+
+                Divider:
+
+                CategoryLabel:
+                    text: 'ADDITIONAL'
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                Divider:
+
+                CategoryLabel:
+                    text: 'ABCDEF'
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                Divider:
+
+                CategoryLabel:
+                    text: 'LOLOOLO'
+
+                CategoryLabel:
+                    text: 'ADDITIONAL'
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                Divider:
+
+                CategoryLabel:
+                    text: 'ABCDEF'
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                Divider:
+
+                CategoryLabel:
+                    text: 'LOLOOLO'
+
+                CategoryLabel:
+                    text: 'ADDITIONAL'
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                Divider:
+
+                CategoryLabel:
+                    text: 'ABCDEF'
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                InfoLabel:
+                    info_label: 'Motherboard'
+                    info_text: app.android_build_wrapper.board
+
+                InfoLabel:
+                    info_label: 'Serial number'
+                    info_text: app.android_build_wrapper.serial
+
+                Divider:
+
+                CategoryLabel:
+                    text: 'LOLOOLO'
+
+
+        FlatButton:
             size_hint: 1, None
             height: '50dp'
-            Label:
-                size_hint: 1, None
-                height: '50dp'
-                text: 'text'
-                color: Utils.get_color_from_hex('#00000057')
-        AnchorLayout:
-            anchor_x: 'center'
-            anchor_y: 'bottom'
-            Button:
-                size_hint: 1, None
-                height: '50dp'
-                text: 'EXIT'
-                on_release: app.stop()
+            text: "EXIT"
+            on_release: app.stop()
+
+<MyLabel@Label>:
+    text: 'Info'
+    color: Utils.get_color_from_hex('#00000057')
+    size_hint: 1, None
+    height: '50dp'
+
+<InfoLabel>:
+    cols: 1
+    size_hint: 1, None
+    height: '45dp'
+    Label:
+        color: Utils.get_color_from_hex('#00000057')
+        text: root.info_label
+        font_size: '18dp'
+        font_name: 'resources/fonts/Roboto-Regular.ttf'
+    Label:
+        color: Utils.get_color_from_hex('#00000036')
+        text: root.info_text
+        font_size: '14dp'
+        font_name: 'resources/fonts/Roboto-Regular.ttf'
+
+<FlatButton@ButtonBehavior+Label>:
+    canvas.before:
+        Color:
+            rgb: Utils.get_color_from_hex('#7986CB') if self.state == 'down' else Utils.get_color_from_hex('#3F51B5')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    color: Utils.get_color_from_hex('#FFFFFF')
+    mipmap: True
+    font_size: '20dp'
+    size_hint: 1, None
+    height: '50dp'
+    font_name: 'resources/fonts/Roboto-Medium.ttf'
+
+<Divider@Widget>:
+
+    canvas:
+        Color:
+            rgba: Utils.get_color_from_hex('#000000C')
+        Line:
+            points: self.x, self.y , self.right, self.y
+            width: self.height
+
+    size_hint: 1, None
+    height: '1dp'
+
+<CategoryLabel@Label>:
+    mipmap: True
+    color: Utils.get_color_from_hex('#00000057')
+    font_size: '30dp'
+    font_name: 'resources/fonts/Roboto-Regular.ttf'
+    size_hint: 1, None
+    height: '30dp'

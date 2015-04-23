@@ -3,6 +3,7 @@
 import kivy
 from kivy.logger import Logger
 from kivy.event import EventDispatcher
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from jnius import autoclass
 from kivy.properties import StringProperty, ObjectProperty
@@ -31,6 +32,11 @@ class AppScreenManager(ScreenManager):
 class MainScreen(Screen):
     pass
 
+
+class InfoLabel(GridLayout):
+
+    info_label = StringProperty('')
+    info_text = StringProperty('')
 
 class AndroidBuildWrapper(EventDispatcher):
 
