@@ -24,21 +24,7 @@ AppScreenManager:
         cols: 1
         padding: -2, 0, -2, -2
 
-        GridLayout:
-
-            id: topbar
-
-            canvas.before:
-                Color:
-                    rgb: Utils.get_color_from_hex('#3F51B5')
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            rows: 1
-            size_hint: 1, None
-            height: '56dp'
-
-
+        TopBar:
 
         ScrollView:
 
@@ -234,3 +220,5 @@ AppScreenManager:
     font_name: 'resources/fonts/Roboto-Regular.ttf'
     size_hint: 1, None
     height: '30dp'
+
+<TopBar@ActionBar>:
